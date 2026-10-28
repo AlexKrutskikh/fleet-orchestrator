@@ -1,2 +1,31 @@
 services:
-  
+  postgres:
+    image: postgres:17
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    env_file: .env
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbit_data:/var/lib/rabbitmq
+      - ./docker/rabbitmq/20-celery-compat.conf:/etc/rabbitmq/conf.d/20-celery-compat.conf:ro
+
+volumes:
+  pg_data:
+  rabbit_data:
