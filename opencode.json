@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama-cloud/gpt-oss:120b",
+  "provider": {
+    "ollama-cloud": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama Cloud",
+      "options": {
+        "baseURL": "https://ollama.com/v1",
+        "apiKey": "{env:OLLAMA_API_KEY}"
+      },
+      "models": {
+        "gpt-oss:120b": {}
+      }
+    }
+  },
+  "permission": {
+    "edit": "ask",
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "pytest*": "allow",
+      "git add*": "ask",
+      "git commit*": "ask",
+      "git push*": "ask",
+      "git push --force*": "deny",
+      "rm *": "deny"
+    }
+  }
+}
