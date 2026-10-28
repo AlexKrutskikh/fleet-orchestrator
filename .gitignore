@@ -1,0 +1,13 @@
+.env
+**/.env
+__pycache__/
+.venv/
+.venv_lg/
+.crew_venv/
+*.pyc
+.idea/
+emulator/robots.json
+celerybeat-schedule*
+crew_report/reports/
+.pytest_cache/
+*.sqlite3
